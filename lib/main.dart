@@ -37,8 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
     
     Size size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      appBar: PreferredSize(
+    var tabSection = PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: Stack(
           alignment: const Alignment(-0.91, -0.2),
@@ -46,7 +45,9 @@ class _MyHomePageState extends State<MyHomePage> {
             AppBar(
               elevation: 0.0,
               backgroundColor: const Color(0xFF202020),
-              leading: const Icon(Icons.menu),
+              leading: const Padding(
+                padding: EdgeInsets.only(left: 10), 
+              child: Icon(Icons.menu)),
               centerTitle: true,
               title: Container(
                   //padding: const EdgeInsets.only(right: 40),
@@ -125,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             Container(
-              padding: const EdgeInsets.only(left: 10),
+              padding: const EdgeInsets.only(left: 15),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -163,11 +164,144 @@ class _MyHomePageState extends State<MyHomePage> {
             )
           ],
         )
+      );
+
+    Widget menuSection = Container(
+      width: 68,
+      decoration: const BoxDecoration(
+        color: Color(0xFF202020),
       ),
-      body: const Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Text('Hello World')
+      child: Column(
+        children: [
+          const SizedBox(height: 15,), // Home
+          Column(
+            children: [IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.home,
+              color: Colors.white,
+            )
+          ),
+          const Text('Home',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 10
+          ),),
+            ]
+        ),
+        const SizedBox(height: 20,), // Explore
+          Column(
+            children: [IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.explore_outlined,
+              color: Colors.white,
+            )
+          ),
+          const Text('Explore',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 10
+          ),),
+            ]
+        ),
+        const SizedBox(height: 20,), // Shorts
+          Column(
+            children: [IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.bolt,
+              color: Colors.white,
+            )
+          ),
+          const Text('Shorts',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 10
+          ),),
+            ]
+        ),
+        const SizedBox(height: 20,), // Subscriptions
+          Column(
+            children: [IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.subscriptions,
+              color: Colors.white,
+            )
+          ),
+          const Text('Subscriptions',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 10
+          ),),
+            ]
+        ),
+        const SizedBox(height: 20,), // Library
+          Column(
+            children: [IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.video_library,
+              color: Colors.white,
+            )
+          ),
+          const Text('Library',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 10
+          ),),
+            ]
+        ),
+        ],
+      ),
+    );
+
+    Widget suggestions = Container(
+      height: 70,
+      decoration: const BoxDecoration(
+        color: Color(0xFF202020),
+        border: Border.symmetric(
+          horizontal: BorderSide(color: Colors.red)
+        )),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15)
+              ),
+              child: Text('All'),
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              decoration: BoxDecoration(
+                color: Color(0xFF373737),
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: Color(0xFF4b4b4b))
+              ),
+              child: Text('Music',
+              style: TextStyle(
+                color: Colors.white
+              ),),
+            )
+          ],
+        ),
+      );
+
+    return Scaffold(
+      appBar: tabSection,
+      body: Row(
+        children: [
+          
+          menuSection,
+          Column(
+            children: [
+              suggestions,
+            ],
+          )
+        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
