@@ -257,14 +257,32 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
+    Widget suggest(String name) {
+      return Container(
+              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              decoration: BoxDecoration(
+                color: const Color(0xFF373737),
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: const Color(0xFF4b4b4b))
+              ),
+              child: Text(name,
+              style: const TextStyle(
+                color: Colors.white
+              ),),
+            );
+    }
+
     Widget suggestions = Container(
+      padding: const EdgeInsets.only(left: 20),
+      // width: size.width - 68, // wrong
       height: 70,
       decoration: const BoxDecoration(
         color: Color(0xFF202020),
         border: Border.symmetric(
-          horizontal: BorderSide(color: Colors.red)
+          horizontal: BorderSide(color: Color(0xFF4b4b4b))
         )),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
               padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
@@ -272,35 +290,84 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(15)
               ),
-              child: Text('All'),
+              child: const Text('All'),
             ),
-            Container(
-              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-              decoration: BoxDecoration(
-                color: Color(0xFF373737),
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: Color(0xFF4b4b4b))
-              ),
-              child: Text('Music',
-              style: TextStyle(
-                color: Colors.white
-              ),),
-            )
+            const SizedBox(width: 15,),
+            suggest('Music'),
+            const SizedBox(width: 15,),
+            suggest('Flutter'),
+            const SizedBox(width: 15,),
+            suggest('Python'),
+            const SizedBox(width: 15,),
+            suggest('Mixes'),
+            const SizedBox(width: 15,),
+            suggest('Beats'),
+            const SizedBox(width: 15,),
+            suggest('Live'),
+            const SizedBox(width: 15,),
+            suggest('Gaming'),
+            const SizedBox(width: 15,),
+            suggest('Trailers'),
+            const SizedBox(width: 15,),
+            suggest('Indie Music'),
+            const SizedBox(width: 15,),
+            suggest('Dance music'),
+            const SizedBox(width: 15,),
+            suggest('Freestyle Rap'),
+            const SizedBox(width: 15,),
+            suggest('Rhythm & Blues'),
+            const SizedBox(width: 15,),
+            const Icon(Icons.arrow_circle_right, color: Colors.white,)
+            
           ],
         ),
       );
+
+    Widget videoSection = Container(
+      decoration: const BoxDecoration(
+        color: Color(0xFF181818)
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                width: 280,
+                child: Column(
+                  children: [
+                    AspectRatio(
+                      aspectRatio: 16/9,
+                      child: Image.network('https://i.ytimg.com/vi/DL0Ix1lnC4w/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBxHnq_C6mxb4VZOETBZLhGtG89eg'),
+                    ),
+                    Row(
+                      children: [
+                        
+                  ],
+                    )
+                  ]
+                ),
+              ),
+            ],
+          )
+        ],
+      )
+    );
 
     return Scaffold(
       appBar: tabSection,
       body: Row(
         children: [
-          
           menuSection,
-          Column(
-            children: [
-              suggestions,
-            ],
-          )
+          Expanded(
+            child: Column(
+              children: [
+                suggestions,
+                //videoSection,
+                //_buildGrid(),
+              ],
+          ),
+          ),
         ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
